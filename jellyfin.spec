@@ -1,9 +1,30 @@
 # NuGet packages are stripped packages and no debug info for .NET binaries at this time
 %global         debug_package %{nil}
 
+# Set .NET runtime identitfier string
+%if 0%{?fedora}
+%define dotnet_os fedora
+%define dotnet_os_ver .%{fedora}
+%elif 0%{?rhel}
+%if "%{dist_name}" == "Red Hat Enterprise Linux"
+%define dotnet_os rhel
+%else
+%define dotnet_os centos
+%endif
+%define dotnet_os_ver .%{rhel}
+%else
+%define dotnet_os linux
+%endif
+%ifarch aarch64
+%define dotnet_arch arm64
+%else
+%define dotnet_arch x64
+%endif
+%define dotnet_runtime_id %{dotnet_os}%{dotnet_os_ver}-%{dotnet_arch}
+
 Name:           jellyfin
 Version:        10.9.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The Free Software Media System
 License:        GPL-2.0-only
 URL:            https://jellyfin.org
@@ -147,11 +168,11 @@ install -p -m 644 -D Jellyfin.Server/Resources/Configuration/logging.json %{buil
 install -p -m 644 -D %{SOURCE12} %{buildroot}%{_sysconfdir}/sysconfig/jellyfin
 
 # system config
-install -p -m 644 -D %{SOURCE16} %{buildroot}%{_prefix}/lib/firewalld/services/jellyfin.xml
+install -p -m 644 -D %{SOURCE15} %{buildroot}%{_prefix}/lib/firewalld/services/jellyfin.xml
 install -p -m 640 -D %{SOURCE13} %{buildroot}%{_sysconfdir}/sudoers.d/jellyfin-sudoers
-install -p -m 644 -D %{SOURCE15} %{buildroot}%{_sysconfdir}/systemd/system/jellyfin.service.d/override.conf
+install -p -m 644 -D %{SOURCE14} %{buildroot}%{_sysconfdir}/systemd/system/jellyfin.service.d/override.conf
 install -p -m 644 -D %{SOURCE11} %{buildroot}%{_unitdir}/jellyfin.service
-install -p -m 644 -D %{SOURCE18} %{buildroot}%{_sysusersdir}/jellyfin.conf
+install -p -m 644 -D %{SOURCE17} %{buildroot}%{_sysusersdir}/jellyfin.conf
 
 # empty directories
 mkdir -p %{buildroot}%{_sharedstatedir}/jellyfin
@@ -160,7 +181,7 @@ mkdir -p %{buildroot}%{_localstatedir}/cache/jellyfin
 mkdir -p %{buildroot}%{_localstatedir}/log/jellyfin
 
 # jellyfin-server-lowports subpackage
-install -p -m 644 -D %{SOURCE17} %{buildroot}%{_unitdir}/jellyfin.service.d/jellyfin-server-lowports.conf
+install -p -m 644 -D %{SOURCE16} %{buildroot}%{_unitdir}/jellyfin.service.d/jellyfin-server-lowports.conf
 
 cd ../%{name}-web-%{version}
 # move web licenses prior to installation
@@ -197,7 +218,6 @@ done
 %{_bindir}/jellyfin
 # Needs 755 else only root can run it since binary build by dotnet is 722
 %{_libdir}/jellyfin/
-%{_libexecdir}/jellyfin/
 
 # Jellyfin config
 %config(noreplace) %attr(644,jellyfin,jellyfin) %{_sysconfdir}/jellyfin/logging.json
@@ -284,6 +304,11 @@ fi
 
 
 %changelog
+* Wed May 22 2024 Luca Magrone <luca@magrone.cc> - 10.9.1-2
+- Define dotnet_runtime_id
+- Fix source number during installation
+- Remove dropped directory from files list
+
 * Sun May 12 2024 Michael Cronenworth <mike@cchtml.com> - 10.9.1-1
 - Update to 10.9.1
 
