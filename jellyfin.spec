@@ -23,7 +23,7 @@
 %define dotnet_runtime_id %{dotnet_os}%{dotnet_os_ver}-%{dotnet_arch}
 
 Name:           jellyfin
-Version:        10.9.2
+Version:        10.9.3
 Release:        1%{?dist}
 Summary:        The Free Software Media System
 License:        GPL-2.0-only
@@ -304,6 +304,9 @@ fi
 
 
 %changelog
+* Fri May 31 2024 Luca Magrone <luca@magrone.cc> - 10.9.3-1
+- Update to 10.9.3
+
 * Wed May 22 2024 Luca Magrone <luca@magrone.cc> - 10.9.2-1
 - Update to 10.9.2
 
