@@ -23,7 +23,7 @@
 %define dotnet_runtime_id %{dotnet_os}%{dotnet_os_ver}-%{dotnet_arch}
 
 Name:           jellyfin
-Version:        10.9.3
+Version:        10.9.6
 Release:        1%{?dist}
 Summary:        The Free Software Media System
 License:        GPL-2.0-only
@@ -136,6 +136,8 @@ dotnet nuget disable source nuget
 %build
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+# https://bugzilla.rpmfusion.org/show_bug.cgi?id=6944
+export DOTNET_NUGET_SIGNATURE_VERIFICATION=false
 mkdir build-server
 dotnet publish --configuration Release \
                --output="build-server" \
@@ -261,7 +263,7 @@ fi
 
 
 %pre server
-%sysusers_create_compat %{SOURCE18}
+%sysusers_create_compat %{SOURCE17}
 
 
 %post server
@@ -304,6 +306,12 @@ fi
 
 
 %changelog
+* Sun Jun 09 2024 Michael Cronenworth <mike@cchtml.com> - 10.9.6-1
+- Update to 10.9.6
+
+* Sun Jun 02 2024 Michael Cronenworth <mike@cchtml.com> - 10.9.4-1
+- Update to 10.9.4
+
 * Fri May 31 2024 Luca Magrone <luca@magrone.cc> - 10.9.3-1
 - Update to 10.9.3
 
