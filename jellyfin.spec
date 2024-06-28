@@ -1,11 +1,9 @@
 # NuGet packages are stripped packages and no debug info for .NET binaries at this time
 %global         debug_package %{nil}
 
-# Set .NET runtime identitfier string
-%if 0%{?fedora}
-%define dotnet_os fedora
-%define dotnet_os_ver .%{fedora}
-%elif 0%{?rhel}
+# Set .NET runtime identitfier string on non-Fedora platforms
+%if !0%{?fedora}
+%if 0%{?rhel}
 %if "%{dist_name}" == "Red Hat Enterprise Linux"
 %define dotnet_os rhel
 %else
@@ -21,6 +19,7 @@
 %define dotnet_arch x64
 %endif
 %define dotnet_runtime_id %{dotnet_os}%{dotnet_os_ver}-%{dotnet_arch}
+%endif
 
 Name:           jellyfin
 Version:        10.9.6
