@@ -1,0 +1,52 @@
+name: SRPM CI
+on:
+  push:
+    branches:
+      - main
+    pull_reques:
+
+permissions: write-all
+
+jobs:
+  srpm:
+    name: Build SRPM
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Podman
+        run: |
+          sudo apt update
+          sudo apt-get -y install podman
+          podman pull fedora
+      - name: Get source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Create container and build srpm
+        run: |
+          mkdir SRPMS
+          podman build -v $PWD:/project --tag rpmbuilder -f Containerfile
+          CID="$(podman run --rmi -v $PWD/SRPMS:/root/rpmbuild/SRPMS:rw,z,shared,bind,U -d rpmbuilder)"
+          podman exec $CID rpmbuild -bs "SPECS/jellyfin.spec"
+          podman stop $CID
+      - name: Version
+        run: echo "version=$(ls SRPMS/*.rpm | cut -d'-' -f3 )" >> "$GITHUB_OUTPUT"
+        id: version
+      - name: Release
+        run: echo "release=$(ls SRPMS/*.rpm | cut -d'-' -f4 | cut -d'.' -f1)" >> "$GITHUB_OUTPUT"
+        id: release
+      - name: Sign
+        uses: FKLC/sign-files-action@v1.0.0
+        with:
+          privateKey: ${{ secrets.PRIVATE_KEY }}
+          extension: '.sha256.sig'
+          outputFolder: 'SRPMS'
+          files: |
+            SRPMS/*.rpm
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "public_key.pem,SRPMS/*.rpm,SRPMS/*.rpm.sha256.sig"
+          name: ${{ steps.version.outputs.version }}-${{ steps.release.outputs.release }}
+          tag: ${{ steps.version.outputs.version }}-${{ steps.release.outputs.release }}
+          commit: main
