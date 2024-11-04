@@ -2,7 +2,7 @@ name: SRPM CI
 on:
   push:
     branches:
-      - main
+      - master
     pull_reques:
 
 permissions: write-all
