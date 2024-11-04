@@ -8,6 +8,8 @@ sources: pkgs
 
 srpm: sources
 	git config --global --add safe.directory .
-	rpmautospec process-distgit jellyfin.spec jellyfin.spec.1
-	rpmbuild -bs jellyfin.spec.1 --define "_topdir ." --define "_sourcedir ." --define "_srcrpmdir ."
+	rpmautospec process-distgit jellyfin.spec jellyfin.spec.new
+	mv jellyfin.spec jellyfin.spec.old
+	mv jellyfin.spec.new jellyfin.spec
+	rpmbuild -bs jellyfin.spec --define "_topdir ." --define "_sourcedir ." --define "_srcrpmdir ."
 	cp *.src.rpm $(outdir)
