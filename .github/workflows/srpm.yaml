@@ -49,4 +49,4 @@ jobs:
           artifacts: "public_key.pem,SRPMS/*.rpm,SRPMS/*.rpm.sha256.sig"
           name: ${{ steps.version.outputs.version }}-${{ steps.release.outputs.release }}
           tag: ${{ steps.version.outputs.version }}-${{ steps.release.outputs.release }}
-          commit: main
+          commit: master
