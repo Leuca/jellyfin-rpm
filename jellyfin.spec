@@ -22,7 +22,7 @@
 %endif
 
 Name:           jellyfin
-Version:        10.10.0
+Version:        10.10.1
 Release:        1%{?dist}
 Summary:        The Free Software Media System
 License:        GPL-2.0-only
@@ -305,6 +305,9 @@ fi
 
 
 %changelog
+* Mon Nov 04 2024 Luca Magrone <luca@magrone.cc> - 10.10.1-1
+- Update to 10.10.1
+
 * Sun Oct 27 2024 Michael Cronenworth <mike@cchtml.com> - 10.10.0-1
 - Update to 10.10.0
 
