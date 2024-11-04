@@ -23,7 +23,7 @@
 
 Name:           jellyfin
 Version:        10.10.1
-Release:        1%{?dist}
+Release:        %autorelease
 Summary:        The Free Software Media System
 License:        GPL-2.0-only
 URL:            https://jellyfin.org
@@ -305,113 +305,4 @@ fi
 
 
 %changelog
-* Mon Nov 04 2024 Luca Magrone <luca@magrone.cc> - 10.10.1-1
-- Update to 10.10.1
-
-* Sun Oct 27 2024 Michael Cronenworth <mike@cchtml.com> - 10.10.0-1
-- Update to 10.10.0
-
-* Sun Sep 08 2024 Luca Magrone <luca@magrone.cc> - 10.9.11-1
-- Update to 10.9.11
-
-* Sun Aug 25 2024 Michael Cronenworth <mike@cchtml.com> - 10.9.10-1
-- Update to 10.9.10
-
-* Mon Aug 05 2024 Michael Cronenworth <mike@cchtml.com> - 10.9.9-1
-- Update to 10.9.9
-
-* Fri Aug 02 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 10.9.8-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
-
-* Sun Jul 21 2024 Michael Cronenworth <mike@cchtml.com> - 10.9.8-1
-- Update to 10.9.8
-
-* Fri Jun 28 2024 Luca Magrone <luca@magrone.cc> - 10.9.7-1
-- Update to 10.9.7
-
-* Sun Jun 09 2024 Michael Cronenworth <mike@cchtml.com> - 10.9.6-1
-- Update to 10.9.6
-
-* Sun Jun 02 2024 Michael Cronenworth <mike@cchtml.com> - 10.9.4-1
-- Update to 10.9.4
-
-* Fri May 31 2024 Luca Magrone <luca@magrone.cc> - 10.9.3-1
-- Update to 10.9.3
-
-* Wed May 22 2024 Luca Magrone <luca@magrone.cc> - 10.9.2-1
-- Update to 10.9.2
-
-* Wed May 22 2024 Luca Magrone <luca@magrone.cc> - 10.9.1-2
-- Define dotnet_runtime_id
-- Fix source number during installation
-- Remove dropped directory from files list
-
-* Sun May 12 2024 Michael Cronenworth <mike@cchtml.com> - 10.9.1-1
-- Update to 10.9.1
-
-* Sat Feb 03 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 10.8.13-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
-
-* Wed Nov 29 2023 Michael Cronenworth <mike@cchtml.com> - 10.8.13-1
-- Update to 10.8.13
-
-* Sun Nov 05 2023 Michael Cronenworth <mike@cchtml.com> - 10.8.12-1
-- Update to 10.8.12
-
-* Sun Oct 01 2023 Michael Cronenworth <mike@cchtml.com> - 10.8.11-3
-- Restore playlist view
-
-* Mon Sep 25 2023 Michael Cronenworth <mike@cchtml.com> - 10.8.11-2
-- Fix LiveTV with FFMPEG 6
-
-* Sun Sep 24 2023 Michael Cronenworth <mike@cchtml.com> - 10.8.11-1
-- Update to 10.8.11
-
-* Wed Aug 02 2023 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 10.8.10-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
-
-* Sun Apr 23 2023 Michael Cronenworth <mike@cchtml.com> - 10.8.10-1
-- Update to 10.8.10
-- Switch to use systemd sysusers config for creating user and group
-
-* Wed Mar 08 2023 Michael Cronenworth <mike@cchtml.com> - 10.8.9-3
-- Handle package upgrade path from upstream (RFBZ#6590)
-- Fix firewalld scriptlet (RFBZ#6593)
-
-* Thu Feb 16 2023 Michael Cronenworth <mike@cchtml.com> - 10.8.9-2
-- Fix runtime id for ARM build (RFBZ#6580)
-
-* Sun Jan 22 2023 Michael Cronenworth <mike@cchtml.com> - 10.8.9-1
-- Update to 10.8.9
-
-* Wed Dec 28 2022 Michael Cronenworth <mike@cchtml.com> - 10.8.8-2
-- Reintroduce firewalld package (RFBZ#6542)
-- Rebuild for dotnet-6.0.12
-
-* Wed Nov 30 2022 Michael Cronenworth <mike@cchtml.com> - 10.8.8-1
-- Update to 10.8.8
-
-* Mon Nov 28 2022 Michael Cronenworth <mike@cchtml.com> - 10.8.7-5
-- Add symlink to default web location (RFBZ#6515)
-
-* Wed Nov 23 2022 Michael Cronenworth <mike@cchtml.com> - 10.8.7-4
-- Drop firewalld sub-package as it is now upstream as of firewalld 1.2
-
-* Sun Nov 20 2022 Michael Cronenworth <mike@cchtml.com> - 10.8.7-3
-- Rebuild for dotnet-6.0.11
-
-* Sun Nov 20 2022 Michael Cronenworth <mike@cchtml.com> - 10.8.7-2
-- Rebuild for dotnet-6.0.10
-
-* Tue Nov 01 2022 Michael Cronenworth <mike@cchtml.com> - 10.8.7-1
-- Update to 10.8.7
-
-* Sat Oct 29 2022 Michael Cronenworth <mike@cchtml.com> - 10.8.6-1
-- Update to 10.8.6
-
-* Mon Oct 24 2022 Michael Cronenworth <mike@cchtml.com> - 10.8.5-2
-- Rebuild for dotnet-6.0.9
-
-* Wed Sep 28 2022 Michael Cronenworth <mike@cchtml.com> - 10.8.5-1
-- Initial spec
-
+%autochangelog
