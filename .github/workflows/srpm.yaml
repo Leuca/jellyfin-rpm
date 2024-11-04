@@ -30,10 +30,10 @@ jobs:
           podman exec $CID rpmbuild -bs "SPECS/jellyfin.spec"
           podman stop $CID
       - name: Version
-        run: echo "version=$(ls SRPMS/*.rpm | cut -d'-' -f3 )" >> "$GITHUB_OUTPUT"
+        run: echo "version=$(ls SRPMS/*.rpm | cut -d'-' -f2 )" >> "$GITHUB_OUTPUT"
         id: version
       - name: Release
-        run: echo "release=$(ls SRPMS/*.rpm | cut -d'-' -f4 | cut -d'.' -f1)" >> "$GITHUB_OUTPUT"
+        run: echo "release=$(ls SRPMS/*.rpm | cut -d'-' -f3 | cut -d'.' -f1)" >> "$GITHUB_OUTPUT"
         id: release
       - name: Sign
         uses: FKLC/sign-files-action@v1.0.0
