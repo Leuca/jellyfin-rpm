@@ -127,6 +127,9 @@ tar xf %{SOURCE4}
 cp -p %{SOURCE5} %{name}-web-%{version}/package-lock.json
 popd
 
+# RHEL has version 8.0.111 avalible while the requested is 8.0.404
+sed -i 's/"version.*/"version": "8.0.0",/' global.json
+
 dotnet nuget add source %{_builddir}/jellyfin-nupkgs -n jellyfin-nupkgs
 dotnet nuget add source %{_builddir}/jellyfin-nupkgs-system -n jellyfin-nupkgs-system
 dotnet nuget disable source nuget
