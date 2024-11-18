@@ -5,6 +5,7 @@ JELLYFIN_VERSION=10.10.2
 # Retrieve neccessary .NET NuGet packages for offline building
 tar xf jellyfin-${JELLYFIN_VERSION}.tar.gz
 pushd jellyfin-${JELLYFIN_VERSION}
+sed -i 's/"version.*/"version": "8.0.0",/' global.json
 mkdir jellyfin-nupkgs
 dotnet restore --packages ./jellyfin-nupkgs
 mkdir jellyfin-nupkgs-system
