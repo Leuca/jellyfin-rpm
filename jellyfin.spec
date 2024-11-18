@@ -131,6 +131,9 @@ dotnet nuget add source %{_builddir}/jellyfin-nupkgs -n jellyfin-nupkgs
 dotnet nuget add source %{_builddir}/jellyfin-nupkgs-system -n jellyfin-nupkgs-system
 dotnet nuget disable source nuget
 
+# RHEL has version 8.0.111 avalible while the requested is 8.0.404
+sed -i 's/"version.*/"version": "8.0.0",/' global.json
+
 
 %build
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
