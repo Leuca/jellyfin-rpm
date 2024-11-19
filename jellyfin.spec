@@ -22,7 +22,7 @@
 %endif
 
 Name:           jellyfin
-Version:        10.10.2
+Version:        10.10.3
 Release:        %autorelease
 Summary:        The Free Software Media System
 License:        GPL-2.0-only
@@ -126,9 +126,6 @@ tar xf %{SOURCE3}
 tar xf %{SOURCE4}
 cp -p %{SOURCE5} %{name}-web-%{version}/package-lock.json
 popd
-
-# RHEL has version 8.0.111 avalible while the requested is 8.0.404
-sed -i 's/"version.*/"version": "8.0.0",/' global.json
 
 dotnet nuget add source %{_builddir}/jellyfin-nupkgs -n jellyfin-nupkgs
 dotnet nuget add source %{_builddir}/jellyfin-nupkgs-system -n jellyfin-nupkgs-system
