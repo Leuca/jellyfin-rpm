@@ -135,8 +135,6 @@ dotnet nuget disable source nuget
 %build
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
-# https://bugzilla.rpmfusion.org/show_bug.cgi?id=6944
-export DOTNET_NUGET_SIGNATURE_VERIFICATION=false
 mkdir build-server
 dotnet publish --configuration Release \
                --output="build-server" \
