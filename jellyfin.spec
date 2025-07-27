@@ -85,7 +85,7 @@ This package contains FirewallD files for Jellyfin.
 # RPMfusion free
 Summary:        The Free Software Media System Server backend
 Requires:       at
-Requires:       ffmpeg
+Requires:       (ffmpeg or ffmpeg-free)
 Requires:       aspnetcore-runtime-8.0
 Requires:       dotnet-runtime-8.0
 
