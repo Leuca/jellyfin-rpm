@@ -22,7 +22,7 @@
 %endif
 
 Name:           jellyfin
-Version:        10.10.7
+Version:        10.11.0
 Release:        %autorelease
 Summary:        The Free Software Media System
 License:        GPL-2.0-only
@@ -35,7 +35,7 @@ Source4:        %{name}-npm.tar.xz
 Source5:        %{name}-web-package-lock.json
 # Jellyfin uses dotnet and npm that both need the Internet to download dependencies.
 # Koji / Mock disable Internet access by default so download the required dependencies beforehand.
-# The following script requires the 'dotnet-sdk-8.0' and 'npm' packages be installed to run.
+# The following script requires the 'dotnet-sdk-9.0' and 'npm' packages be installed to run.
 Source10:       %{name}-offline.sh
 Source11:       %{name}.service
 Source12:       %{name}.env
@@ -53,7 +53,7 @@ ExcludeArch:    %{power64} ppc64le %{arm}
 BuildRequires:  firewalld-filesystem
 BuildRequires:  fontconfig
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  dotnet-sdk-8.0
+BuildRequires:  dotnet-sdk-9.0
 
 # jellyfin-web
 BuildRequires:  npm >= 8
@@ -86,8 +86,8 @@ This package contains FirewallD files for Jellyfin.
 Summary:        The Free Software Media System Server backend
 Requires:       at
 Requires:       ffmpeg
-Requires:       aspnetcore-runtime-8.0
-Requires:       dotnet-runtime-8.0
+Requires:       aspnetcore-runtime-9.0
+Requires:       dotnet-runtime-9.0
 
 
 %description server
