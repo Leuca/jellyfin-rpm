@@ -1,5 +1,5 @@
 pkgs:
-	dnf -y install git rpmautospec rpmdevtools wget curl dotnet-sdk-8.0 npm
+	dnf -y install git rpmautospec rpmdevtools wget curl dotnet-sdk-9.0 npm
 
 sources: pkgs
 	wget $$(spectool -S jellyfin.spec 2>/dev/null | grep Source0 | cut -d" " -f 2)
