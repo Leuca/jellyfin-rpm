@@ -49,5 +49,6 @@ npm i --cpu=x64 --os linux
 npm i --cpu=arm64 --os linux
 tar -c -I 'xz -9 -T0 --memlimit-compress=50%' -f ../jellyfin-npm.tar.xz jellyfin-npm
 cp -p package-lock.json ../jellyfin-web-package-lock.json
+npm config delete cache
 popd
 
