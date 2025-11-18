@@ -22,7 +22,7 @@
 %endif
 
 Name:           jellyfin
-Version:        10.11.2
+Version:        10.11.3
 Release:        %autorelease
 Summary:        The Free Software Media System
 License:        GPL-2.0-only
