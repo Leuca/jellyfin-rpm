@@ -22,8 +22,8 @@
 %endif
 
 Name:           jellyfin
-Version:        10.11.3
-Release:        %autorelease
+Version:        10.11.4
+Release:        1%{?dist}
 Summary:        The Free Software Media System
 License:        GPL-2.0-only
 URL:            https://jellyfin.org
